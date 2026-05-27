@@ -77,7 +77,7 @@ export default function WhatKeyAmIIn() {
   const [loading,        setLoading]        = useState(false);
   const [error,          setError]          = useState(null);
   const [showCustom,     setShowCustom]     = useState(false);
-  const [isDark,         setIsDark]         = useState(true);
+  const [isDark,         setIsDark]         = useState(false);
   const resultRef = useRef(null);
 
   const T = isDark ? THEMES.dark : THEMES.light;
