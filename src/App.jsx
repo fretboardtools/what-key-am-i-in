@@ -98,14 +98,14 @@ export default function WhatKeyAmIIn() {
     if (selectedChords.length < 2) return;
     setLoading(true); setError(null); setAnalysis(null);
     try {
-      const userMessage = `I've been playing these chords: ${selectedChords.join(", ")}. What key am I in, and what scales should I use?`;
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000, system:SYSTEM_PROMPT, messages:[{role:"user",content:userMessage}] }),
+      const res = await fetch("/api/analyse", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ chords: selectedChords }),
       });
       if (!res.ok) throw new Error(`API error ${res.status}`);
       const data = await res.json();
-      const text = data.content?.find(b => b.type==="text")?.text || "";
+      const text = data.result || "";
       setAnalysis(text);
       setTimeout(() => resultRef.current?.scrollIntoView({behavior:"smooth",block:"start"}), 100);
     } catch (e) {
