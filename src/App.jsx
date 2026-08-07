@@ -61,12 +61,12 @@ const THEMES = {
     scrollBg:"#1c1a0f", scrollTh:"#2e2a14",
   },
   light: {
-    bg:"#fafaf7", surface:"#ffffff", surface2:"#f5f4ef",
-    border:"#e0ddd0", text:"#2d2a1e", textMid:"#3d3a2a", textLo:"#5a5540", textMute:"#8a8468",
-    accent:"#b8960a", accentBg:"#fafaf7",
-    resultText1:"#1a1810", resultText2:"#3d3a2a",
-    inputBg:"#f5f4ef", errorBg:"#fef2f2", errorBorder:"#fca5a5", errorText:"#dc2626",
-    scrollBg:"#f5f4ef", scrollTh:"#e0ddd0",
+    bg:"#ffffff", surface:"#ffffff", surface2:"#f8f8f6",
+    border:"#e8e8e4", text:"#1a1a18", textMid:"#3a3a36", textLo:"#6b6b65", textMute:"#9a9a94",
+    accent:"#1a1a18", accentBg:"#ffffff",
+    resultText1:"#000000", resultText2:"#3a3a36",
+    inputBg:"#f8f8f6", errorBg:"#fef2f2", errorBorder:"#fca5a5", errorText:"#dc2626",
+    scrollBg:"#f8f8f6", scrollTh:"#d4d4ce",
   },
 };
 
@@ -116,9 +116,9 @@ export default function WhatKeyAmIIn() {
   const chordRows = NOTES.map(root => ({ root, maj:root, min:`${root}m` }));
 
   return (
-    <div style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'Lora',Georgia,serif", padding:"28px 18px 48px", transition:"background 0.2s,color 0.2s" }}>
+    <div style={{ minHeight:"100vh", background:T.bg, color:T.text, fontFamily:"'DM Sans',sans-serif", padding:"28px 18px 48px", transition:"background 0.2s,color 0.2s" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
         * { box-sizing:border-box; }
         button { cursor:pointer; font-family:inherit; }
         input  { font-family:inherit; }
@@ -139,28 +139,30 @@ export default function WhatKeyAmIIn() {
         <div style={{ marginBottom:"32px" }}>
           <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", gap:"12px", marginBottom:"8px" }}>
             <div>
-              <div style={{ fontFamily:"'Fira Code',monospace", fontSize:"10px", color:T.accent, letterSpacing:"2px", marginBottom:"8px", opacity:0.8 }}>UNLOCK THE GUITAR</div>
-              <h1 style={{ fontFamily:"'Lora',serif", fontSize:"clamp(30px,6vw,48px)", fontWeight:"400", fontStyle:"italic", margin:"0 0 8px", color:T.resultText1, lineHeight:"1.15", letterSpacing:"-0.5px" }}>
-                What Key Am I In?
-              </h1>
+              <div style={{ display:"flex", alignItems:"baseline", gap:"10px", marginBottom:"6px" }}>
+                <h1 style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"clamp(20px,5vw,28px)", fontWeight:"800", margin:0, color:T.resultText1, letterSpacing:"-0.5px", textTransform:"uppercase" }}>
+                  What Key Am I In?
+                </h1>
+                <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"9px", color:T.textMute, background:T.surface2, padding:"2px 6px", borderRadius:"2px", letterSpacing:"1px", border:`1px solid ${T.border}` }}>UNLOCK THE GUITAR</span>
+              </div>
             </div>
-            <button onClick={() => setIsDark(d=>!d)} style={{ flexShrink:0, marginTop:"4px", padding:"8px 14px", borderRadius:"20px", border:`1.5px solid ${T.border}`, background:T.surface, color:T.textMute, fontSize:"13px", display:"flex", alignItems:"center", gap:"6px", transition:"all 0.15s", whiteSpace:"nowrap" }}>
-              <span style={{ fontSize:"16px" }}>{isDark?"☀️":"🌙"}</span>
-              <span style={{ fontSize:"11px", fontFamily:"'Fira Code',monospace", letterSpacing:"0.5px" }}>{isDark?"Light":"Dark"}</span>
+            <button onClick={() => setIsDark(d=>!d)} style={{ flexShrink:0, marginTop:"4px", padding:"6px 12px", borderRadius:"4px", border:`1px solid ${T.border}`, background:T.surface2, color:T.textMute, fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", cursor:"pointer", whiteSpace:"nowrap" }}>
+              <span style={{ fontSize:"14px" }}>{isDark?"☀️":"🌙"}</span>
+              <span style={{ fontSize:"10px", fontFamily:"'JetBrains Mono',monospace" }}>{isDark?"Light":"Dark"}</span>
             </button>
           </div>
-          <p style={{ color:T.textMute, fontSize:"15px", margin:0, lineHeight:"1.6" }}>
+          <p style={{ color:T.textMute, fontSize:"14px", margin:0, lineHeight:"1.6" }}>
             Tap the chords you're playing. Find out your key, why it works, and what to play over it.
           </p>
         </div>
 
         {/* ── Chord Picker ── */}
         <div style={{ background:T.surface, borderRadius:"16px", padding:"20px", border:`1px solid ${T.border}`, marginBottom:"14px" }}>
-          <div style={{ fontFamily:"'Fira Code',monospace", fontSize:"10px", color:T.textMute, letterSpacing:"1.5px", marginBottom:"14px" }}>SELECT YOUR CHORDS</div>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"10px", color:T.textMute, letterSpacing:"1.5px", marginBottom:"14px" }}>SELECT YOUR CHORDS</div>
           <div style={{ display:"flex", flexDirection:"column", gap:"5px" }}>
             {chordRows.map(({ root, maj, min }) => (
               <div key={root} style={{ display:"flex", gap:"5px", alignItems:"center" }}>
-                <div style={{ width:"28px", flexShrink:0, fontFamily:"'Fira Code',monospace", fontSize:"11px", color:T.textMute, textAlign:"right", paddingRight:"4px" }}>{root}</div>
+                <div style={{ width:"28px", flexShrink:0, fontFamily:"'JetBrains Mono',monospace", fontSize:"11px", color:T.textMute, textAlign:"right", paddingRight:"4px" }}>{root}</div>
                 {[maj, min].map(chord => {
                   const active = selectedChords.includes(chord);
                   return (
@@ -169,7 +171,7 @@ export default function WhatKeyAmIIn() {
                       border: active ? `1.5px solid ${T.accent}` : `1.5px solid ${T.border}`,
                       background: active ? `${T.accent}18` : T.surface2,
                       color: active ? T.accent : T.textLo,
-                      fontSize:"12px", fontWeight:active?"600":"400", fontFamily:"'Fira Code',monospace",
+                      fontSize:"12px", fontWeight:active?"600":"400", fontFamily:"'JetBrains Mono',monospace",
                     }}>{chord}</button>
                   );
                 })}
@@ -178,14 +180,14 @@ export default function WhatKeyAmIIn() {
           </div>
 
           <div style={{ marginTop:"14px", paddingTop:"14px", borderTop:`1px solid ${T.border}` }}>
-            <button onClick={() => setShowCustom(v=>!v)} style={{ background:"none", border:"none", color:T.textMute, fontSize:"12px", fontFamily:"'Fira Code',monospace", padding:0, letterSpacing:"0.5px" }}>
+            <button onClick={() => setShowCustom(v=>!v)} style={{ background:"none", border:"none", color:T.textMute, fontSize:"12px", fontFamily:"'JetBrains Mono',monospace", padding:0, letterSpacing:"0.5px" }}>
               {showCustom?"▾":"▸"} Add a chord not listed (7ths, sus, etc.)
             </button>
             {showCustom && (
               <div style={{ display:"flex", gap:"8px", marginTop:"10px" }}>
                 <input value={customInput} onChange={e=>setCustomInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&addCustomChord()} placeholder="e.g. Bm7, Gsus4, Fmaj7"
                   style={{ flex:1, padding:"8px 12px", background:T.inputBg, border:`1.5px solid ${T.border}`, borderRadius:"8px", color:T.text, fontSize:"13px", outline:"none" }}/>
-                <button onClick={addCustomChord} style={{ padding:"8px 16px", borderRadius:"8px", border:`1.5px solid ${T.border}`, background:T.surface2, color:T.accent, fontSize:"13px", fontFamily:"'Fira Code',monospace" }}>Add</button>
+                <button onClick={addCustomChord} style={{ padding:"8px 16px", borderRadius:"8px", border:`1.5px solid ${T.border}`, background:T.surface2, color:T.accent, fontSize:"13px", fontFamily:"'JetBrains Mono',monospace" }}>Add</button>
               </div>
             )}
           </div>
@@ -194,11 +196,11 @@ export default function WhatKeyAmIIn() {
         {/* ── Selected chords tray ── */}
         {selectedChords.length > 0 && (
           <div style={{ background:T.surface, borderRadius:"12px", padding:"14px 16px", border:`1px solid ${T.border}`, marginBottom:"14px", animation:"fadeUp 0.2s ease" }}>
-            <div style={{ fontFamily:"'Fira Code',monospace", fontSize:"10px", color:T.textMute, letterSpacing:"1.5px", marginBottom:"10px" }}>YOUR CHORDS ({selectedChords.length})</div>
+            <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"10px", color:T.textMute, letterSpacing:"1.5px", marginBottom:"10px" }}>YOUR CHORDS ({selectedChords.length})</div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:"7px" }}>
               {selectedChords.map(chord => (
                 <div key={chord} style={{ display:"flex", alignItems:"center", gap:"5px", padding:"5px 10px 5px 12px", background:`${T.accent}15`, border:`1.5px solid ${T.accent}55`, borderRadius:"20px", animation:"fadeUp 0.15s ease" }}>
-                  <span style={{ fontSize:"13px", fontWeight:"600", fontFamily:"'Fira Code',monospace", color:T.accent }}>{chord}</span>
+                  <span style={{ fontSize:"13px", fontWeight:"600", fontFamily:"'JetBrains Mono',monospace", color:T.accent }}>{chord}</span>
                   <button onClick={() => removeChord(chord)} style={{ background:"none", border:"none", color:T.textMute, fontSize:"14px", padding:"0 0 0 2px", lineHeight:1, display:"flex", alignItems:"center" }}>×</button>
                 </div>
               ))}
@@ -211,7 +213,7 @@ export default function WhatKeyAmIIn() {
           <button className="analyse-btn" onClick={analyse} disabled={loading||selectedChords.length<2} style={{
             flex:1, padding:"14px", borderRadius:"10px",
             border:`1.5px solid ${T.accent}`, background:"transparent", color:T.accent,
-            fontSize:"14px", fontWeight:"600", fontFamily:"'Fira Code',monospace",
+            fontSize:"14px", fontWeight:"600", fontFamily:"'JetBrains Mono',monospace",
             letterSpacing:"1px", transition:"all 0.15s ease",
           }}>
             {loading ? (
@@ -222,7 +224,7 @@ export default function WhatKeyAmIIn() {
             ) : selectedChords.length<2 ? "Select at least 2 chords" : "→ Find My Key"}
           </button>
           {(selectedChords.length>0||analysis) && (
-            <button onClick={reset} style={{ padding:"14px 18px", borderRadius:"10px", border:`1.5px solid ${T.border}`, background:"none", color:T.textMute, fontSize:"13px", fontFamily:"'Fira Code',monospace", transition:"all 0.12s" }}>Reset</button>
+            <button onClick={reset} style={{ padding:"14px 18px", borderRadius:"10px", border:`1.5px solid ${T.border}`, background:"none", color:T.textMute, fontSize:"13px", fontFamily:"'JetBrains Mono',monospace", transition:"all 0.12s" }}>Reset</button>
           )}
         </div>
 
@@ -238,7 +240,7 @@ export default function WhatKeyAmIIn() {
           <div ref={resultRef} style={{ background:T.surface, borderRadius:"16px", border:`1px solid ${T.border}`, overflow:"hidden", animation:"fadeUp 0.3s ease" }}>
             <div style={{ padding:"16px 20px", borderBottom:`1px solid ${T.border}`, display:"flex", alignItems:"center", gap:"10px" }}>
               <div style={{ width:"8px", height:"8px", borderRadius:"50%", background:T.accent, boxShadow:`0 0 10px ${T.accent}` }}/>
-              <span style={{ fontFamily:"'Fira Code',monospace", fontSize:"10px", color:T.accent, letterSpacing:"2px" }}>
+              <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"10px", color:T.accent, letterSpacing:"2px" }}>
                 KEY ANALYSIS — {selectedChords.join(" · ")}
               </span>
             </div>
@@ -251,7 +253,7 @@ export default function WhatKeyAmIIn() {
                 )
               ))}
             </div>
-            <div style={{ padding:"12px 20px", borderTop:`1px solid ${T.border}`, fontFamily:"'Fira Code',monospace", fontSize:"11px", color:T.textMute }}>
+            <div style={{ padding:"12px 20px", borderTop:`1px solid ${T.border}`, fontFamily:"'JetBrains Mono',monospace", fontSize:"11px", color:T.textMute }}>
               unlocktheguitar.net — try different chord combos to explore related keys
             </div>
           </div>
